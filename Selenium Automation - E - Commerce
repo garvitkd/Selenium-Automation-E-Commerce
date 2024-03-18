@@ -1,0 +1,79 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+def login(username, password):
+    # Find the login link and click it
+    login_link = driver.find_element_by_id("login-link")
+    login_link.click()
+
+    # Wait for the login form to appear
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "login-form")))
+
+    # Find the username and password fields and fill them
+    username_field = driver.find_element_by_id("username")
+    username_field.send_keys(username)
+    password_field = driver.find_element_by_id("password")
+    password_field.send_keys(password)
+
+    # Find and click the login button
+    login_button = driver.find_element_by_id("login-button")
+    login_button.click()
+
+def register(username, email, password):
+    # Find the register link and click it
+    register_link = driver.find_element_by_id("register-link")
+    register_link.click()
+
+    # Wait for the registration form to appear
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "registration-form")))
+
+    # Find the registration fields and fill them
+    username_field = driver.find_element_by_id("username")
+    username_field.send_keys(username)
+    email_field = driver.find_element_by_id("email")
+    email_field.send_keys(email)
+    password_field = driver.find_element_by_id("password")
+    password_field.send_keys(password)
+
+    # Find and click the register button
+    register_button = driver.find_element_by_id("register-button")
+    register_button.click()
+
+def update_account_info(new_email):
+    # Find the account settings link and click it
+    account_settings_link = driver.find_element_by_id("account-settings-link")
+    account_settings_link.click()
+
+    # Wait for the account settings page to appear
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "account-settings-page")))
+
+    # Find the email field and update it
+    email_field = driver.find_element_by_id("email")
+    email_field.clear()
+    email_field.send_keys(new_email)
+
+    # Find and click the update button
+    update_button = driver.find_element_by_id("update-button")
+    update_button.click()
+
+# Set up the WebDriver (ensure you have installed Selenium and appropriate browser driver)
+driver = webdriver.Chrome()
+
+# Open the e-commerce website
+driver.get("https://example.com")
+
+# Example usage:
+# If the user already has an account, login
+login("your_username", "your_password")
+
+# If the user doesn't have an account, register a new one
+# register("new_username", "new_email", "new_password")
+
+# Example for updating account information
+# update_account_info("new_email@example.com")
+
+# Close the browser window
+driver.quit()
